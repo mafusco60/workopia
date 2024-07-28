@@ -1,0 +1,16 @@
+{
+  "name": "maryannefusco/workopia-php",
+  "description": "Job listing application",
+  "authors": [
+    {
+      "name": "Mary Anne Fusco",
+      "email": "maryannefusco@yahoo.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
