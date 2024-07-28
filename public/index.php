@@ -5,12 +5,6 @@ require '../helpers.php';
 
 use Framework\Router;
 
-/* spl_autoload_register(function ($class){
-  $path = basepath('Framework/' . $class . '.php');
-  if(file_exists($path)){
-    require $path;
-  }
-}); */
 
 //Instantiate the router
 $router = new Router();
