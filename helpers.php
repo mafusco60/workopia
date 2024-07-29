@@ -70,3 +70,26 @@
     die(var_dump($value));
     echo '</pre>';
    }
+
+   /**
+    *  Sanitize Data
+    *
+    * @param string $dirty
+    *
+    * @return string
+    */
+    function sanitize($dirty){
+      return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
+    }
+
+    /**
+     *  Redirect to given URL
+     * 
+     * @param string $url
+     * return void
+     */
+    function redirect($url){
+      header("Location: /{$url}");
+      exit;
+
+    }

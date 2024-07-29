@@ -32,7 +32,7 @@
               
             </li>
             <li class="mb-2">
-              <strong>Tags:</strong> <span><?= ucwords($listing->tags) ?></span>
+              <strong>Tags:</strong> <span><?= ($listing->tags) ?></span>
               
             </li>
           </ul>
