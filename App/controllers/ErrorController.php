@@ -20,7 +20,7 @@ loadView('error', [
   }
 
   /**
-   * 403 nunauthorized error
+   * 403 Unauthorized error
    * 
    * return void
    */

@@ -70,6 +70,30 @@
     die(var_dump($value));
     echo '</pre>';
    }
+  /**
+  * Format salary
+  * 
+  * @param string $salary
+  * @return string Formatted Salary or void
+  */
+  function formatSalary($salary)
+  {
+    if($salary)
+  return '$' . number_format(floatval($salary));
+  else return;
+  }
+  /**
+  * Format Tags
+  * 
+  * @param string $tags
+  * @return string Formatted tags or void
+  */
+  function formatTags($tags)
+  {
+    if($tags)
+  return ucwords($tags);
+  else return;
+  }
 
    /**
     *  Sanitize Data
@@ -89,7 +113,7 @@
      * return void
      */
     function redirect($url){
-      header("Location: /{$url}");
+      header("Location: {$url}");
       exit;
 
     }

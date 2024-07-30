@@ -8,11 +8,18 @@ use Framework\Validation;
 class ListingController {
   
   protected $db;
-
+/**
+ * Undocumented function
+ */
   public function __construct(){
     $config = require basepath('config/db.php');
     $this->db = new Database($config);
   }
+  /**
+   * Show all listings
+   *
+   * @return void
+   */
   public function index(){
 
     $listings = $this->db->query('SELECT * FROM listings')->fetchAll();
@@ -21,10 +28,20 @@ loadView('listings/index', [
   'listings' => $listings
 ]);
   }
+  /**
+   * Show the Create listing form
+   *
+   * @return void
+   */
   public function create(){
     loadview('/listings/create');
   }
-  
+  /**
+   * Show a single listing
+   *
+   * @param array $params
+   * @return void
+   */
   public function show($params){
     $id = $params['id'] ?? '';
 
@@ -101,7 +118,106 @@ loadView('listings/index', [
 
   $this->db->query($query, $newListingData);
 
-  redirect("listings");
+  redirect("/listings");
 }
 }
+/**
+ * Delete a listing
+ *
+ * @param
+ * 
+ * @return void
+ */
+public function destroy($params){
+
+  $id = $params['id'];
+
+  $params = [
+    'id' => $id
+  ];
+$listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+if (!$listing) {
+  ErrorController::notFound('Listing not found');
+  return;
+}
+
+$this->db->query('DELETE FROM listings WHERE id = :id', $params);
+//Set flash message
+$_SESSION['success_message'] = 'Listing deleted successfully';
+redirect('/listings');
+}
+  /**
+   * Show the listing edit form
+   *
+   * @param array $params
+   * @return void
+   */
+  public function edit($params){
+    $id = $params['id'] ?? '';
+
+    $params = [
+    'id' => $id
+];
+
+  $listing = $this->db->query ('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+  // Check if listing exists
+  if(!$listing){
+    ErrorController::notFound('Listing not found');
+    return;
+  }
+
+  loadview('/listings/edit', ['listing' => $listing]);
+  }
+  /**
+   * Update a listing
+   * 
+   * @param array $params
+   * @return void 
+   */
+  public function update($params) {
+    $id = $params['id'] ?? '';
+
+    $params = [
+    'id' => $id
+];
+
+  $listing = $this->db->query ('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+  // Check if listing exists
+  if(!$listing){
+    ErrorController::notFound('Listing not found');
+    return;
+  }
+
+  $allowedFields = ['title','description', 'salary', 'tags', 'company', 'address', 'city', 'state', 'phone', 'email', 'requirements', 'benefits' ];
+
+  $updateValues = [];
+  $updateValues = array_intersect_key($_POST, array_flip($allowedFields));
+
+  $updateValues = array_map('sanitize', $updateValues);
+
+  $requiredFields = ['title', 'description', 'salary', 'email', 'city', 'state'];
+
+  $errors = [];
+
+  foreach($requiredFields as $field){
+    if(empty($updateValues[$field]) || !Validation::string($updateValues[$field])){
+      $errors[$field] = ucfirst($field) . ' is required';
+
+    }
+  }
+  if (!empty($errors)){
+    loadView('/listings/edit', [
+      'listing' => $listing,
+      'errors' => $errors
+    ]);
+    exit;
+  }else {
+    // Submit to database
+
+  }
+
+  }
 }

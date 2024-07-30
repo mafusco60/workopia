@@ -6,8 +6,6 @@ use App\Controllers\ErrorController;
 
 class Router {
   protected $routes = [];
-
-
   
 /**
  * Add a new route
@@ -31,7 +29,7 @@ class Router {
    * Add a GET route
    * 
    * @param string $uri
-   * $param string $controller
+   * @param string $controller
    * @return void
    */
 public function get($uri, $controller) {
@@ -41,7 +39,7 @@ public function get($uri, $controller) {
    * Add a POST route
    * 
    * @param string $uri
-   * $param string $controller
+   * @param string $controller
    * @return void
    */
   public function post($uri, $controller) {
@@ -51,20 +49,21 @@ public function get($uri, $controller) {
    * Add a PUT route
    * 
    * @param string $uri
-   * $param string $controller
+   * @param string $controller
    * @return void
    */
 public function put($uri, $controller) {
   $this->registerRoute('PUT', $uri, $controller);
 }
  /**
-   * Add a DELETE route
+   * Add a  route
    * 
    * @param string $uri
-   * $param string $controller
-   * @reeturn void
+   * @param string $controller
+   * @return void
    */
   public function delete($uri, $controller) {
+
     $this->registerRoute('DELETE', $uri, $controller);
   }
 
@@ -79,6 +78,12 @@ public function put($uri, $controller) {
  */
   public function route($uri){
     $requestMethod = $_SERVER['REQUEST_METHOD'];
+
+    // Check for _method input
+    if($requestMethod === 'POST' && isset($_POST['_method'])){
+      // Override the request method with the value of _method
+      $requestMethod = strtoupper($_POST['_method']);
+    }
 
     foreach($this->routes as $route){
         
