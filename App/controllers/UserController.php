@@ -51,7 +51,7 @@ public function store(){
 = 'Please enter a valid email address';
 
  }
- // Validation
+
  if(!Validation::string($name, 2, 50)){
   $errors['name']
 = 'Name must be between 2 and 50 characters';
@@ -81,10 +81,31 @@ if(!empty($errors)){
     ]
     ]);
     exit;
-}else{
-  inspectAndDie('Store');
-}
-  
+  }
+  // Check if email exists
+  $params = [
+    'email'=> $email
+  ];
+  $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+
+  if($user){
+    $errors['email'] = 'That email already exists';
+    loadView('users/create', ['errors => $errors']);
+    exit;
+ }
+ // Create user account
+ $params = [
+  'name'=> $name,
+  'email'=> $email,
+  'city'=> $city,
+  'state'=> $state,  
+  'password'=> password_hash($password, PASSWORD_DEFAULT)  
+ ];
+
+ $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+
+ redirect('/');
 }
 }
 

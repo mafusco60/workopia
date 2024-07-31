@@ -24,11 +24,11 @@
           <div class="mb-4">
             <textarea
               type="text"
-              name="description"
+              name="tags"
               placeholder="Job Description"
-              class="w-full px-4 py-2 border rounded focus:outline-none">
-             <?= $listing['description'] ?? '' ?>
-            </textarea>
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+              <?= $listing['tags'] ?? '' ?>
+            ></textarea>
           </div>
           <div class="mb-4">
             <input

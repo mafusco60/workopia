@@ -115,14 +115,13 @@ public function put($uri, $controller) {
             if ($match){
               $controller = 'App\\Controllers\\' . $route['controller'];
               $controllerMethod = $route['controllerMethod'];
+                
               //instantiate the controller and call the method
               $controllerInstance = new $controller();
               $controllerInstance->$controllerMethod($params);
               return;
             }
-        }
-
-     
+        }   
     }
     ErrorController::notFound();
   }
