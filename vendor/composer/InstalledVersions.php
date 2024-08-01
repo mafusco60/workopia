@@ -344,7 +344,7 @@ class InstalledVersions
             if (substr(__DIR__, -8, 1) !== 'C') {
                 /** @var array{root: array{name: string, pretty_version: string, version: string, reference: string|null, type: string, install_path: string, aliases: string[], dev: bool}, versions: array<string, array{pretty_version?: string, version?: string, reference?: string|null, type?: string, install_path?: string, aliases?: string[], dev_requirement: bool, replaced?: string[], provided?: string[]}>} $required */
                 $required = require __DIR__ . '/installed.php';
-                self::$installed = $required;
+                self::$installed = $;
             } else {
                 self::$installed = array();
             }
