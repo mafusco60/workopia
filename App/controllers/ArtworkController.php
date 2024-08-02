@@ -26,9 +26,9 @@ class ArtworkController {
 
     $artworks = $this->db->query('SELECT * FROM artworks ORDER BY created_at DESC')->fetchAll();
 
-loadView('artworks/index', [
+/* loadView('artworks/index', [
   'artworks' => $artworks
-]);
+]); */
   }
   /**
    * Show the Create artwork form
@@ -78,7 +78,7 @@ loadView('artworks/index', [
 
     // $newArtworkData['user_id'] = Session::get('user')['id'];
     
-    $requiredFields = ['name','description', 'tags', 'original', 'type',  'image', 'landscape'  ];
+    $requiredFields = ['name','description', 'tags', 'original', 'type',  'image'  ];
     
     $errors = [];
 

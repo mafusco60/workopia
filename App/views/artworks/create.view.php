@@ -1,3 +1,9 @@
+<?php use App\Controllers\FileController;
+$file = new FileController();
+
+?>
+
+
 <?= loadPartial('head') ?>
 <?= loadPartial('navbar') ?>
 
@@ -18,6 +24,15 @@
               placeholder="Artwork Title"
               class="w-full px-4 py-2 border rounded focus:outline-none"
               value = "<?= $artwork['name'] ?? '' ?>"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="type"
+              placeholder="Artwork Type"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+              value = "<?= $artwork['type'] ?? '' ?>"
             />
           </div>
           <div class="mb-4">
@@ -81,7 +96,7 @@
           
           <div class="mb-4">
             <input
-              type="boolean"
+              type="int"
               name="landscape"
               placeholder="Landscape"
               class="w-full px-4 py-2 border rounded focus:outline-none"
@@ -90,14 +105,32 @@
           </div>
           <div class="mb-4">
             <input
-              type="boolean"
+              type="int"
               name="featured"
               placeholder="Featured"
               class="w-full px-4 py-2 border rounded focus:outline-none"
               value = "<?= $artwork['featured'] ?? ''?>"
             />
           </div>
-          
+
+          <div class="mb-4">
+            <label for="resume" class="block text-gray-700 font-medium">file</label>
+             <input type="file" id="image" name="image" class="w-full px-4 py-2 border rounded focus:ring focus:ring-blue-300 focus:outline-none">
+          </div>
+          <div class="flex items-center justify-between">
+            <button type="submit" name="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none">
+            Create Listing
+          </button>
+          <?php 
+
+
+
+
+
+
+
+
+ ?>
           <button
             class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none"
           >
