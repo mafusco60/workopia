@@ -11,7 +11,7 @@ class Authorization {
    * @param int $resourceId
    * @return bool
    */
-public static function isOwner($resourceId){
+public static function isAdmin($resourceId){
   $sessionUser = Session::get('user');
 
   if($sessionUser !== null && isset($sessionUser['id'])){

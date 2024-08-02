@@ -30,7 +30,7 @@
            </form>
            
             <a
-            href="/listings/create"
+            href="/artworks/create"
             class="bg-rose-300 hover:bg-rose-500 text-black px-4 py-2 rounded hover:shadow-md transition duration-300"
             ><i class="fa fa-edit"></i> Add Artwork</a
           >
