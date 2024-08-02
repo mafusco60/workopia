@@ -1,5 +1,7 @@
 <?= loadPartial('head') ?>
 <?= loadPartial('navbar') ?>
+<?= loadPartial('hero') ?>
+
 <?= loadPartial('showcase-search') ?>
 <?= loadPartial('top-banner') ?>
 

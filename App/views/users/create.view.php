@@ -11,9 +11,18 @@
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder="First Name"
               class="w-full px-4 py-2 border rounded focus:outline-none"
-              value = "<?= $user['name'] ?? '' ?>"
+              value = "<?= $user['first_name'] ?? '' ?>"
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+              class="w-full px-4 py-2 border rounded focus:outline-none"
+              value = "<?= $user['last_name'] ?? '' ?>"
             />
           </div>
           <div class="mb-4">
