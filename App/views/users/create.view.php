@@ -76,14 +76,14 @@
             />
           </div>
           <button
-            type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
+            type="submit" class="w-full bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded focus:outline-none"
           >
             Register
           </button>
 
           <p class="mt-4 text-gray-500">
             Already have an account?
-            <a class="text-blue-900" href="/auth/login">Login</a>
+            <a class="text-rose-900" href="/auth/login">Login</a>
           </p>
         </form>
       </div>
